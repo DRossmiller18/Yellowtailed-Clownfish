@@ -1,0 +1,3 @@
+The population with the most genetic diversity would be in the Philippines. This is due to the fact that it is the amphiprion clarkii’s natural habitat.
+Indonesia has the second largest genetic diversity due to its proximity to the Philippines, even though a current does not travel down to Indonesia, and the equator.
+Japan has the least amount of genetic diversity because of its distance from the core populations. This large distance makes genetic flow difficult because Amphiprion clarkii do not travel very far within their lifetime.
