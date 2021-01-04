@@ -5,7 +5,7 @@ sum_stats_mac2 <- readRDS("sum_stats_mac2.RDS")
 
 ################################################################################
 
-Ho <- sum_stats_mac2$Ho #Heterozygosisty for Japan population
+Ho <- sum_stats_mac2$Ho #Heterozygosity for Japan population
 J_Ho <- Ho[,1]
 J_Ho_df <- data.frame(J_Ho)
 J_Ho_df <- data.frame(sum_stats_mac2$Ho[,1])
@@ -35,7 +35,7 @@ mean_Fis_J
 #Japan = 1, Philippines = 3, Indonesia = 2
 ################################################################################
 
-Ho <- sum_stats_mac2$Ho #Heterozygosisty for Philippines population
+Ho <- sum_stats_mac2$Ho #Heterozygosity for Philippines population
 P_Ho <- Ho[,3]
 P_Ho_df <- data.frame(P_Ho)
 P_Ho_df <- data.frame(sum_stats_mac2$Ho[,3])
@@ -67,7 +67,7 @@ mean_Fis_P
 
 ################################################################################
 
-Ho <- sum_stats_mac2$Ho #Heterozygosisty for Indonesia population
+Ho <- sum_stats_mac2$Ho #Heterozygosity for Indonesia population
 I_Ho <- Ho[,2]
 I_Ho_df <- data.frame(I_Ho)
 I_Ho_df <- data.frame(sum_stats_mac2$Ho[,2])
@@ -105,4 +105,24 @@ write.csv(Fis, "Fis.csv")
 
 GeneticDiversity <- cbind(Ho, He, Fis)
 write.csv(GeneticDiversity, "GeneticDiversity.csv")
+
+################################################################################
+
+ggplot2(data = "GeneticDiversity.csv")
+(mapping = aes(x = div, y = pop))
+
+df <- data.frame(div = c(mean_Fis_I, mean_Fis_P, mean_Fis_J), 
+                 pop = c(7, 10, 7))
+head(df)
+
+library(ggplot2)
+p <- ggplot(data = df, aes(x = div, y = pop))
+  geom_bar(stat = "identity")
+p
+
+p + coord_flip()
+
+
+
+
 
