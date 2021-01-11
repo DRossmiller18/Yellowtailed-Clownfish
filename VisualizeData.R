@@ -81,3 +81,8 @@ tot_div_sum$Pop2 <- factor(tot_div_sum$Pop, levels = c("Japan", "Philippines", "
 Fis_plot <- ggplot(data = tot_div_sum, aes(x = Pop2, y = Fis_mean)) + geom_point() + 
   geom_errorbar(aes(ymin = Fis_mean - Fis_sterror, ymax = Fis_mean + Fis_sterror))
 Fis_plot
+
+#tips on how to change scatterplot appearance: http://www.sthda.com/english/wiki/ggplot2-scatter-plots-quick-start-guide-r-software-and-data-visualization
+#tips on how to change errorbar appearance: http://www.sthda.com/english/wiki/ggplot2-error-bars-quick-start-guide-r-software-and-data-visualization
+#tips on how to change plot background appearance: http://www.sthda.com/english/wiki/ggplot2-themes-and-background-colors-the-3-elements
+#tips on how to change axis/axis title appearance: http://www.sthda.com/english/wiki/ggplot2-title-main-axis-and-legend-titles & http://www.sthda.com/english/wiki/ggplot2-axis-ticks-a-guide-to-customize-tick-marks-and-labels 
