@@ -177,26 +177,66 @@ He_mean <- c(mean_He_I, mean_He_J, mean_He_P)
 
 ################################################################################
 
-Fis_plot <- ggplot(data = tot_div_sum, aes(x = Population, y = Fis_mean)) + geom_point() + 
-  geom_errorbar(aes(ymin = Fis_mean - Fis_sterror, ymax = Fis_mean + Fis_sterror))
+install.packages("tidyverse")
+install.packages("ggplot")
+library(tidyverse)
+tot_div_sum <- read.csv("diversity_mean_std.csv")
+
+tot_div_sum$Pop2 <- factor(tot_div_sum$Pop, levels = c("Japan", "Philippines", "Indonesia"))
+
+Fis_plot <- ggplot(data = tot_div_sum, aes(x = Pop2, y = Fis_mean)) + geom_point(shape = 24, fill = "blue") + 
+  geom_errorbar(aes(ymin = Fis_mean - Fis_sterror, ymax = Fis_mean + Fis_sterror)) +
+  geom_hline(yintercept = 0, size = 1, linetype = "solid", color = "#666666") +
+  labs(x = "Population", y = "Inbreeding", title = "Inbreeding_of_Amphiprion_clarkii") + 
+  theme(axis.title.x = element_text(size = 20)) + theme(axis.title.y = element_text(size = 20)) + theme(plot.title = element_text(size = 20)) +
+  theme(axis.text.x = element_text(size = 20)) + theme(axis.text.y = element_text(size = 20))
 Fis_plot
 
 Ho_plot <- ggplot(data = tot_div_sum, aes(x = Pop2, y = Ho_mean)) + geom_point(shape = 24, fill = "blue") + 
-  geom_errorbar(aes(ymin = Ho_mean - Ho_sterror, ymax = Ho_mean + Ho_sterror))
+  geom_errorbar(aes(ymin = Ho_mean - Ho_sterror, ymax = Ho_mean + Ho_sterror)) +
+  labs(x = "Population", y = "Observed_Heterozygosity", title = "Observed_Heterozygosity_of_Amphiprion_clarkii") +
+  theme(axis.title.x = element_text(size = 20)) + theme(axis.title.y = element_text(size = 20)) + theme(plot.title = element_text(size = 20)) +
+  theme(axis.text.x = element_text(size = 20)) + theme(axis.text.y = element_text(size = 20))
 Ho_plot
 
 He_plot <- ggplot(data = tot_div_sum, aes(x = Pop2, y = He_mean)) + geom_point(shape = 24, fill = "blue") + 
-  geom_errorbar(aes(ymin = He_mean - He_sterror, ymax = He_mean + He_sterror))
+  geom_errorbar(aes(ymin = He_mean - He_sterror, ymax = He_mean + He_sterror)) +
+  labs(x = "Population", y = "Expected_Heterozygosity", title = "Expected_Heterozygosity_of_Amphiprion_clarkii") +
+  theme(axis.title.x = element_text(size = 20)) + theme(axis.title.y = element_text(size = 20)) + theme(plot.title = element_text(size = 20)) +
+  theme(axis.text.x = element_text(size = 20)) + theme(axis.text.y = element_text(size = 20))
 He_plot
 
+################################################################################
+#Make tick marks and axis labels big (20-24)
+#Make horizontal line on FIS chart at 0 
+mean_site_pi_plot <- ggplot(data = pi_site_sum, aes(x = Pop, y = mean)) + 
+geom_point(aes(size = 1), show.legend = FALSE) + 
+  geom_errorbar(aes(ymin = mean - diff_lower, ymax = mean + diff_upper, width = 0.5, size = 0.5), show.legend = FALSE)
+mean_site_pi_plot_annotated <- mean_site_pi_plot + ggtitle("Mean pi w/95% CI") + theme_bw() + 
+  theme(panel.border = element_rect(size = 1), axis.title = element_text(size = 14, face = "bold"),
+        axis.ticks = element_line(color = "black", size = 1), axis.text = element_text(size = 12, color = "black"))
+mean_site_pi_plot_annotated
 
+mean_site_pi_plot <- ggplot(data = pi_site_sum, aes(x = Pop, y = mean)) + 
+  geom_point(aes(size = 1), show.legend = FALSE) + 
+  geom_errorbar(aes(ymin = mean - diff_lower, ymax = mean + diff_upper, width = 0.5, size = 0.5), show.legend = FALSE)
+mean_site_pi_plot_annotated <- mean_site_pi_plot + ggtitle("Mean pi w/95% CI") + theme_bw() + 
+  theme(panel.border = element_rect(size = 1), axis.title = element_text(size = 14, face = "bold"),
+        axis.ticks = element_line(color = "black", size = 1), axis.text = element_text(size = 12, color = "black"))
+mean_site_pi_plot_annotated
 
+pi_site_boxplot_annotated <- pi_site_boxplot + theme_bw() + 
+  theme(panel.border = element_blank(), panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(), axis.line = element_line(size = 1), 
+        axis.ticks = element_line(color = "black", size = 1), 
+        axis.text = element_text(size = 14, color = "black"), 
+        axis.title = element_text(size = 14, face = "bold"), legend.position = "top", 
+        legend.text = element_text(size = 12), legend.title = element_text(size = 12))
+pi_site_boxplot_annotated
 
+ggtitle()
 
-
-
-
-
+xlab()
 
 library(dplyr)
 #ggplot2(data = "GeneticDiversity.csv")
